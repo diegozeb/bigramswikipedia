@@ -20,3 +20,19 @@ Ejemplo de uso:
   .\BigramsWikipedia.exe "C:\data\wikipedia.txt" 8 "res_w8" 3000000
   
 max_keys (opcional, default: 1000000): Límite de claves en RAM por hilo antes de volcar a disco. Se recomiendan 3000000 para optimizar I/O y evitar sobrepasar el límite de archivos abiertos por Windows.
+
+Resultados de RendimientoPruebas ejecutadas sobre el dataset de 17.9 GB (3,000,000 de claves por worker):
+Workers (N)  Conteo (s)  Merge (s)  Total (s)  Speedup Total (S)  Eficiencia (E)
+1            989.89      138.83     1128.72      1.00x              100.0%
+2            486.68      137.83      624.52      1.81x               90.4%
+4            277.92      138.86      416.79      2.71x               67.7%
+8            192.86      156.43      349.31      3.23x               40.4%
+
+Estructura del Repositorio
+├── BigramsWikipedia.cpp   # Código fuente principal en C++
+├── BigramsWikipedia.exe   # Ejecutable precompilado de la aplicación
+├── res_w1/                # Métricas y Top 1000 con 1 worker
+├── res_w2/                # Métricas y Top 1000 con 2 workers
+├── res_w4/                # Métricas y Top 1000 con 4 workers
+├── res_w8/                # Métricas y Top 1000 con 8 workers
+└── README.md
